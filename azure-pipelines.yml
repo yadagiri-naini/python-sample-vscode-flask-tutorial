@@ -72,11 +72,9 @@ stages:
             inputs:
               versionSpec: '$(pythonVersion)'
             displayName: 'Use Python version'
-
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : $(webAppName)'
+          - task: AzureRmWebAppDeployment@2
             inputs:
-              azureSubscription: '3427c5bd-cf1f-415e-bbbd-ad807ba680ff'
-              appType: 'webApp'
-              appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              ConnectedServiceName: 'azureconnection' # string. Required. Azure Subscription. 
+              WebAppName:  $(webAppName) # string. Required. App Service name. 
+              Package: '$(System.DefaultWorkingDirectory)/**/*.zip' 
+         
