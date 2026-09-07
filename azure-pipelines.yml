@@ -76,5 +76,5 @@ stages:
             inputs:
               ConnectedServiceName: 'azureconnection' # string. Required. Azure Subscription. 
               WebAppName:  $(webAppName) # string. Required. App Service name. 
-              Package: '$(System.DefaultWorkingDirectory)/**/*.zip' 
+              Package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip 
          
